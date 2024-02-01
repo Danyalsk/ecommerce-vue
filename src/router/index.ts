@@ -4,10 +4,16 @@ import ProductOverView from '@/components/icons/ProductOverView.vue'
 import CheckOut from '@/views/CheckOut.vue'
 import OrderSummaries from '@/views/OrderSummaries.vue'
 import YourOrder from '@/views/YourOrder.vue'
+import LoginView from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'Login',
+      component: LoginView
+    },
     {
       path: '/checkOut',
       name: 'checkout',
@@ -24,7 +30,7 @@ const router = createRouter({
       component: YourOrder
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: HomeView
     },
