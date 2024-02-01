@@ -649,7 +649,7 @@
         </div>
 
         <!-- Sale -->
-        <section
+        <!-- <section
           aria-labelledby="sale-heading"
           class="relative mx-auto flex max-w-7xl flex-col items-center px-4 pt-32 text-center sm:px-6 lg:px-8"
         >
@@ -670,7 +670,7 @@
               >Get access to our one-time sale</a
             >
           </div>
-        </section>
+        </section> -->
 
         <!-- Testimonials -->
         <section
@@ -959,67 +959,69 @@ const navigation = {
     { name: 'Stores', href: '#' }
   ]
 }
-const offers = [
-  { name: 'Download the app', description: 'Get an exclusive $5 off code', href: '#' },
-  { name: "Return when you're ready", description: '60 days of free returns', href: '#' },
-  { name: 'Sign up for our newsletter', description: '15% off your first order', href: '#' }
-]
+// const offers = [
+//   { name: 'Download the app', description: 'Get an exclusive $5 off code', href: '#' },
+//   { name: "Return when you're ready", description: '60 days of free returns', href: '#' },
+//   { name: 'Sign up for our newsletter', description: '15% off your first order', href: '#' }
+// ]
 const trendingProducts = [
   {
     id: 1,
     name: 'Nike Shoes',
-    color: 'Red and White',
+    color: 'Mix Color',
     price: '$35',
     href: '#',
-    imageSrc: 'src/assets/shoes4.jpg',
+    imageSrc: 'https://images4.alphacoders.com/108/1085299.jpg',
     imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
     availableColors: [
-      { name: 'Black', colorBg: '#111827' },
-      { name: 'Brass', colorBg: '#FDE68A' },
-      { name: 'Chrome', colorBg: '#E5E7EB' }
+      // { name: 'Black', colorBg: '#111827' },
+      // { name: 'Brass', colorBg: '#FDE68A' },
+      // { name: 'Chrome', colorBg: '#E5E7EB' }
     ]
   },
 
   {
     id: 2,
-    name: 'Machined Pen',
-    color: 'Black',
+    name: 'Adidas Shoes',
+    color: 'Red',
     price: '$35',
     href: '#',
-    imageSrc: 'src/assets/shoes.jpg',
+    imageSrc:
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D',
     imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
     availableColors: [
-      { name: 'Black', colorBg: '#111827' },
-      { name: 'Brass', colorBg: '#FDE68A' },
-      { name: 'Chrome', colorBg: '#E5E7EB' }
+      // { name: 'Black', colorBg: '#111827' },
+      // { name: 'Brass', colorBg: '#FDE68A' },
+      // { name: 'Chrome', colorBg: '#E5E7EB' }
     ]
   },
   {
     id: 3,
-    name: 'Machined Pen',
+    name: 'Puma Shoes',
     color: 'Black',
     price: '$35',
     href: '#',
-    imageSrc: 'src/assets/shoes2.jpg',
+    imageSrc:
+      'https://blenderartists.org/uploads/default/original/4X/7/0/0/7008f64b23dd630c61164cd0fe6129eb015c080b.jpeg',
     imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
     availableColors: [
-      { name: 'Black', colorBg: '#111827' },
-      { name: 'Brass', colorBg: '#FDE68A' },
-      { name: 'Chrome', colorBg: '#E5E7EB' }
+      // { name: 'Black', colorBg: '#111827' },
+      // { name: 'Brass', colorBg: '#FDE68A' },
+      // { name: 'Chrome', colorBg: '#E5E7EB' }
     ]
   },
   {
     id: 4,
-    name: 'Machined Pen',
+    name: 'Fancy Shoes',
     color: 'Black',
     price: '$35',
     href: '#',
-    imageSrc: 'src/assets/shoes3.jpg',
+    imageSrc: 'https://c1.wallpaperflare.com/preview/426/87/675/shoe-adidas-sneaker.jpg',
     imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
     availableColors: [
-      { name: 'Black', colorBg: '#111827' },
-      { name: 'Brass', colorBg: '#FDE68A' },
-      { name: 'Chrome', colorBg: '#E5E7EB' }
+      // { name: 'Black', colorBg: '#111827' },
+      // { name: 'Brass', colorBg: '#FDE68A' },
+      // { name: 'Chrome', colorBg: '#E5E7EB' }
     ]
   }
 
