@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <TransitionRoot as="template" :show="open"
+  <TransitionRoot as="template" :show="open">
     <Dialog as="div" class="relative z-10" @close="open = false">
       <TransitionChild
         as="template"
