@@ -269,7 +269,7 @@
                     <span class="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true" />
 
                     <div class="flow-root">
-                      <a @click="handleClick" class="group -m-2 flex items-center p-2">
+                      <a @click="MenuOpen = true" class="group -m-2 flex items-center p-2">
                         <ShoppingCartIcon
                           class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                           aria-hidden="true"
@@ -280,6 +280,15 @@
                         >
                         <span class="sr-only">items in cart, view bag</span>
                       </a>
+                    </div>
+                    <div class="mx-10 flex">
+                      <button
+                        @click="$router.push('/add-product')"
+                        type="button"
+                        class="my-4 mx-4 rounded-md bg-blue-800 px-3.5 py-3 text-sm font-semibold text-white shadow-sm"
+                      >
+                        Add Product
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -352,7 +361,7 @@
                 class="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0"
               >
                 <li
-                  v-for="product in trendingProducts"
+                  v-for="product in productStore.products"
                   :key="product.id"
                   class="inline-flex w-64 flex-col text-center lg:w-auto"
                 >
@@ -405,7 +414,7 @@
     </main>
   </div>
 
-  <SideDrawer :open="MenuOpen" />
+  <SideDrawer v-model="MenuOpen" />
 </template>
 
 <script setup>
@@ -419,12 +428,13 @@ import {
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import SideDrawer from '@/components/SideDrawer.vue'
+import { useProductsStore } from '@/stores/product'
 
 const MenuOpen = ref(false)
 
-const handleClick = () => {
-  MenuOpen.value = true
-}
+// const handleClick = () => {
+//   MenuOpen.value = true
+// }
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
@@ -492,67 +502,5 @@ const navigation = {
   ]
 }
 
-const trendingProducts = [
-  {
-    id: 1,
-    name: 'Nike Shoes',
-    color: 'Mix Color',
-    price: '$35',
-    href: '#',
-    imageSrc: 'https://images4.alphacoders.com/108/1085299.jpg',
-    imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
-    availableColors: [
-      // { name: 'Black', colorBg: '#111827' },
-      // { name: 'Brass', colorBg: '#FDE68A' },
-      // { name: 'Chrome', colorBg: '#E5E7EB' }
-    ]
-  },
-
-  {
-    id: 2,
-    name: 'Adidas Shoes',
-    color: 'Red',
-    price: '$35',
-    href: '#',
-    imageSrc:
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D',
-    imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
-    availableColors: [
-      // { name: 'Black', colorBg: '#111827' },
-      // { name: 'Brass', colorBg: '#FDE68A' },
-      // { name: 'Chrome', colorBg: '#E5E7EB' }
-    ]
-  },
-  {
-    id: 3,
-    name: 'Puma Shoes',
-    color: 'Black',
-    price: '$35',
-    href: '#',
-    imageSrc:
-      'https://blenderartists.org/uploads/default/original/4X/7/0/0/7008f64b23dd630c61164cd0fe6129eb015c080b.jpeg',
-    imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
-    availableColors: [
-      // { name: 'Black', colorBg: '#111827' },
-      // { name: 'Brass', colorBg: '#FDE68A' },
-      // { name: 'Chrome', colorBg: '#E5E7EB' }
-    ]
-  },
-  {
-    id: 4,
-    name: 'Fancy Shoes',
-    color: 'Black',
-    price: '$35',
-    href: '#',
-    imageSrc: 'https://c1.wallpaperflare.com/preview/426/87/675/shoe-adidas-sneaker.jpg',
-    imageAlt: 'Black machined steel pen with hexagonal grip and small white logo at top.',
-    availableColors: [
-      // { name: 'Black', colorBg: '#111827' },
-      // { name: 'Brass', colorBg: '#FDE68A' },
-      // { name: 'Chrome', colorBg: '#E5E7EB' }
-    ]
-  }
-
-  // More products...
-]
+const productStore = useProductsStore()
 </script>

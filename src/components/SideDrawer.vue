@@ -159,9 +159,5 @@ const products = [
   // More products...
 ]
 
-// const open = defineModel({ default: false })
-
-defineProps({
-  open: Boolean
-})
+const open = defineModel({ default: false })
 </script>
