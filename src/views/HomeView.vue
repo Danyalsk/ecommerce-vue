@@ -362,6 +362,7 @@
               >
                 <li
                   v-for="product in productStore.products"
+                  @click="$router.push({ name: 'productOverview', params: { id: product.id } })"
                   :key="product.id"
                   class="inline-flex w-64 flex-col text-center lg:w-auto"
                 >
@@ -371,7 +372,6 @@
                     >
                       <img
                         :src="product.imageSrc"
-                        :alt="product.imageAlt"
                         class="h-full w-full object-cover object-center group-hover:opacity-75"
                       />
                     </div>
@@ -431,10 +431,6 @@ import SideDrawer from '@/components/SideDrawer.vue'
 import { useProductsStore } from '@/stores/product'
 
 const MenuOpen = ref(false)
-
-// const handleClick = () => {
-//   MenuOpen.value = true
-// }
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {

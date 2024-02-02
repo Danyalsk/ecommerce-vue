@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ProductOverView from '@/components/icons/ProductOverView.vue'
 import CheckOut from '@/views/CheckOut.vue'
 import OrderSummaries from '@/views/OrderSummaries.vue'
 import YourOrder from '@/views/YourOrder.vue'
 import LoginView from '@/views/LoginView.vue'
 import AddProduct from '@/views/AddProduct.vue'
+import ProductOverView from '@/views/ProductOverView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -46,7 +46,7 @@ const router = createRouter({
     },
 
     {
-      path: '/product-Overview',
+      path: '/overview/:id',
       name: 'productOverview',
       component: ProductOverView
     },
