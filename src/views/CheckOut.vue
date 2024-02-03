@@ -254,7 +254,6 @@ const placeOrder = () => {
     products: { ...productStore.cart },
     id: Math.floor(Math.random() * 10000)
   })
-  productStore.cart = []
-  router.push({ name: 'yourOrder' })
+  router.push({ name: 'orderSummaries' })
 }
 </script>

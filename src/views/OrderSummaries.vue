@@ -1,12 +1,4 @@
 <template>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full bg-white">
-    <body class="h-full">
-    ```
-  -->
   <main class="relative lg:min-h-full">
     <div class="h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
       <img
@@ -39,7 +31,11 @@
             role="list"
             class="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500"
           >
-            <li v-for="product in orders.products" :key="product.id" class="flex space-x-6 py-6">
+            <li
+              v-for="product in productStore.lastOrder.products"
+              :key="product.id"
+              class="flex space-x-6 py-6"
+            >
               <img
                 :src="product.imageSrc"
                 :alt="product.imageAlt"
@@ -52,7 +48,6 @@
                 <p>{{ product.color }}</p>
                 <p>{{ product.size }}</p>
               </div>
-              s
               <p class="flex-none font-medium text-gray-900">{{ product.price }}</p>
             </li>
           </ul>
@@ -60,24 +55,14 @@
           <dl class="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-500">
             <div class="flex justify-between">
               <dt>Subtotal</dt>
-              <dd class="text-gray-900">$72.00</dd>
-            </div>
-
-            <div class="flex justify-between">
-              <dt>Shipping</dt>
-              <dd class="text-gray-900">$8.00</dd>
-            </div>
-
-            <div class="flex justify-between">
-              <dt>Taxes</dt>
-              <dd class="text-gray-900">$6.40</dd>
+              <dd class="text-gray-900">{{ productStore.cartTotal }}</dd>
             </div>
 
             <div
               class="flex items-center justify-between border-t border-gray-200 pt-6 text-gray-900"
             >
               <dt class="text-base">Total</dt>
-              <dd class="text-base">$86.40</dd>
+              <dd class="text-base">{{ productStore.cartTotal }}</dd>
             </div>
           </dl>
 
@@ -120,7 +105,7 @@
           </dl>
 
           <div class="mt-16 border-t border-gray-200 py-6 text-right">
-            <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+            <a @click="toHome" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
               Continue Shopping
               <span aria-hidden="true"> &rarr;</span>
             </a>
@@ -134,6 +119,7 @@
 <script setup>
 import { useProductsStore } from '@/stores/product'
 
+import { useRouter } from 'vue-router'
 // const products = [
 //   {
 //     id: 1,
@@ -148,5 +134,11 @@ import { useProductsStore } from '@/stores/product'
 //   // More products...
 // ]
 
+const router = useRouter()
+const toHome = () => {
+  productStore.cart = []
+
+  router.push({ name: 'home' })
+}
 const productStore = useProductsStore()
 </script>

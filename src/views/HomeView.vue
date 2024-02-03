@@ -278,6 +278,13 @@
                       >
                         Add Product
                       </button>
+                      <button
+                        @click="$router.push((name = '/your-order'))"
+                        type="button"
+                        class="mx-4 flex w-[120px] justify-center rounded-md bg-indigo-600 px-3.5 py-3 text-sm font-semibold text-white shadow-sm"
+                      >
+                        Orders
+                      </button>
                     </div>
                   </div>
                 </div>

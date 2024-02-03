@@ -115,14 +115,12 @@
                     </div>
                     <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                       <p>
-                        or{{ ' ' }}
                         <button
                           type="button"
                           class="font-medium text-indigo-600 hover:text-indigo-500"
-                          @click="open = false"
+                          @click="deleteCart"
                         >
-                          Continue Shopping
-                          <span aria-hidden="true"> &rarr;</span>
+                          Clear Cart
                         </button>
                       </p>
                     </div>
@@ -143,12 +141,17 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 
 const productStore = useProductsStore()
-const open = defineModel({ default: false })
+let open = defineModel({ default: false })
 
 const removeFromCart = (productId) => {
   const indexToRemove = productStore.cart.findIndex((e) => e.id === productId)
   if (indexToRemove !== -1) {
     productStore.cart.splice(indexToRemove, 1)
   }
+}
+
+const deleteCart = () => {
+  productStore.cart = []
+  open.value = false
 }
 </script>

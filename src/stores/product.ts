@@ -77,7 +77,12 @@ export const useProductsStore = defineStore(
 
     const orders = ref<Order[]>([])
 
-    return { products, cart, cartTotal, addToCart, orders }
+    const lastOrder = computed(() => {
+      const ordersArray = orders.value
+      return ordersArray.length > 0 ? ordersArray[ordersArray.length - 1] : null
+    })
+
+    return { products, cart, cartTotal, addToCart, orders, lastOrder }
   },
   {
     persist: true
