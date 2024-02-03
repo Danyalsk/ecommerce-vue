@@ -48,7 +48,11 @@
                     <div class="mt-8">
                       <div class="flow-root">
                         <ul role="list" class="-my-6 divide-y divide-gray-200">
-                          <li v-for="product in products" :key="product.id" class="flex py-6">
+                          <li
+                            v-for="product in productStore.cart"
+                            :key="product.id"
+                            class="flex py-6"
+                          >
                             <div
                               class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
                             >
@@ -76,6 +80,7 @@
 
                                 <div class="flex">
                                   <button
+                                    @click="removeFromCart(product.id)"
                                     type="button"
                                     class="font-medium text-indigo-600 hover:text-indigo-500"
                                   >
@@ -100,7 +105,7 @@
                     </p>
                     <div class="mt-6">
                       <a
-                        href="#"
+                        @click="$router.push((name = 'checkout'))"
                         class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >Checkout</a
                       >
@@ -130,34 +135,17 @@
 </template>
 
 <script setup>
+import { useProductsStore } from '@/stores/product'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 
-const products = [
-  {
-    id: 1,
-    name: 'Throwback Hip Bag',
-    href: '#',
-    color: 'Salmon',
-    price: '$90.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-    imageAlt:
-      'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.'
-  },
-  {
-    id: 2,
-    name: 'Medium Stuff Satchel',
-    href: '#',
-    color: 'Blue',
-    price: '$32.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.'
-  }
-  // More products...
-]
-
+const productStore = useProductsStore()
 const open = defineModel({ default: false })
+
+const removeFromCart = (productId) => {
+  const indexToRemove = productStore.cart.findIndex((e) => e.id === productId)
+  if (indexToRemove !== -1) {
+    productStore.cart.splice(indexToRemove, 1)
+  }
+}
 </script>

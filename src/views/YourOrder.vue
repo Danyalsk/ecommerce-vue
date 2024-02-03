@@ -12,16 +12,16 @@
 
       <div class="mt-12 space-y-16 sm:mt-16">
         <section
-          v-for="order in orders"
+          v-for="order in productStore.orders"
           :key="order.number"
-          :aria-labelledby="`${order.number}-heading`"
+          :aria-labelledby="`${number}-heading`"
         >
           <div class="space-y-1 md:flex md:items-baseline md:space-x-4 md:space-y-0">
             <h2
               :id="`${order.number}-heading`"
               class="text-lg font-medium text-gray-900 md:flex-shrink-0"
             >
-              Order #{{ order.number }}
+              Order #{{ number }}
             </h2>
             <div
               class="space-y-5 sm:flex sm:items-baseline sm:justify-between sm:space-y-0 md:min-w-0 md:flex-1"
@@ -55,7 +55,7 @@
                     {{ ' ' }}
                     <span class="mx-1 text-gray-400" aria-hidden="true">&middot;</span>
                     {{ ' ' }}
-                    <span>{{ product.size }}</span>
+                    <span>{{ size }}</span>
                   </p>
                   <p class="mt-1 font-medium text-gray-900">{{ product.price }}</p>
                 </div>
@@ -83,27 +83,32 @@
 </template>
 
 <script setup>
-const orders = [
-  {
-    number: '4376',
-    status: 'Delivered on January 22, 2021',
-    href: '#',
-    invoiceHref: '#',
-    products: [
-      {
-        id: 1,
-        name: 'Machined Brass Puzzle',
-        href: '#',
-        price: '$95.00',
-        color: 'Brass',
-        size: '3" x 3" x 3"',
-        imageSrc:
-          'https://tailwindui.com/img/ecommerce-images/order-history-page-07-product-01.jpg',
-        imageAlt: 'Brass puzzle in the shape of a jack with overlapping rounded posts.'
-      }
-      // More products...
-    ]
-  }
-  // More orders...
-]
+import { useProductsStore } from '@/stores/product'
+
+// const orders = [
+//   {
+//     number: '4376',
+//     status: 'Delivered on January 22, 2021',
+//     href: '#',
+//     invoiceHref: '#',
+//     products: [
+//       {
+//         id: 1,
+//         name: 'Machined Brass Puzzle',
+//         href: '#',
+//         price: '$95.00',
+//         color: 'Brass',
+//         size: '3" x 3" x 3"',
+//         imageSrc:
+//           'https://tailwindui.com/img/ecommerce-images/order-history-page-07-product-01.jpg',
+//         imageAlt: 'Brass puzzle in the shape of a jack with overlapping rounded posts.'
+//       }
+//       // More products...
+//     ]
+//   }
+//   // More orders...
+// ]
+const size = '3" x 3" x 3"'
+const number = '4376'
+const productStore = useProductsStore()
 </script>

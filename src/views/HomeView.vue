@@ -1,15 +1,11 @@
 <template>
   <div class="bg-white">
-    <!-- Mobile menu -->
-
     <header class="relative z-10">
       <nav aria-label="Top">
-        <!-- Top navigation -->
         <div class="bg-gray-900">
           <div
             class="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
           >
-            <!-- Currency selector -->
             <form class="hidden lg:block lg:flex-1">
               <div class="flex">
                 <label for="desktop-currency" class="sr-only">Currency</label>
@@ -44,12 +40,10 @@
           </div>
         </div>
 
-        <!-- Secondary navigation -->
         <div class="bg-white">
           <div class="border-b border-gray-200">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div class="flex h-16 items-center justify-between">
-                <!-- Logo (lg+) -->
                 <div class="hidden lg:flex lg:items-center">
                   <a href="#">
                     <span class="sr-only">Your Company</span>
@@ -62,7 +56,6 @@
                 </div>
 
                 <div class="hidden h-full lg:flex">
-                  <!-- Mega menus -->
                   <PopoverGroup class="ml-8">
                     <div class="flex h-full justify-center space-x-8">
                       <Popover
@@ -94,7 +87,6 @@
                           <PopoverPanel
                             class="absolute inset-x-0 top-full text-gray-500 sm:text-sm"
                           >
-                            <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
                             <div
                               class="absolute inset-0 top-1/2 bg-white shadow"
                               aria-hidden="true"
@@ -220,7 +212,6 @@
                   </PopoverGroup>
                 </div>
 
-                <!-- Mobile menu and search (lg-) -->
                 <div class="flex flex-1 items-center lg:hidden">
                   <button
                     type="button"
@@ -231,14 +222,12 @@
                     <Bars3Icon class="h-6 w-6" aria-hidden="true" />
                   </button>
 
-                  <!-- Search -->
                   <a href="#" class="ml-2 p-2 text-gray-400 hover:text-gray-500">
                     <span class="sr-only">Search</span>
                     <MagnifyingGlassIcon class="h-6 w-6" aria-hidden="true" />
                   </a>
                 </div>
 
-                <!-- Logo (lg-) -->
                 <a href="#" class="lg:hidden">
                   <span class="sr-only">Your Company</span>
                   <img
@@ -276,7 +265,7 @@
                         />
                         <span
                           class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
-                          >0</span
+                          >{{ productStore.cart.length }}</span
                         >
                         <span class="sr-only">items in cart, view bag</span>
                       </a>
@@ -285,7 +274,7 @@
                       <button
                         @click="$router.push('/add-product')"
                         type="button"
-                        class="my-4 mx-4 rounded-md bg-blue-800 px-3.5 py-3 text-sm font-semibold text-white shadow-sm"
+                        class="mx-4 flex w-[120px] justify-center rounded-md bg-blue-800 px-3.5 py-3 text-sm font-semibold text-white shadow-sm"
                       >
                         Add Product
                       </button>
@@ -362,7 +351,12 @@
               >
                 <li
                   v-for="product in productStore.products"
-                  @click="$router.push({ name: 'productOverview', params: { id: product.id } })"
+                  @click="
+                    () => {
+                      quickOpen = true
+                      selectedProduct = product
+                    }
+                  "
                   :key="product.id"
                   class="inline-flex w-64 flex-col text-center lg:w-auto"
                 >
@@ -411,10 +405,273 @@
           </div>
         </div>
       </section>
+
+      <section aria-labelledby="collections-heading" class="bg-gray-100">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+            <h2 id="collections-heading" class="text-2xl font-bold text-gray-900">Collections</h2>
+
+            <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+              <div v-for="collection in collections" :key="collection.name" class="group relative">
+                <div
+                  class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64"
+                >
+                  <img
+                    :src="collection.imageSrc"
+                    :alt="collection.imageAlt"
+                    class="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <h3 class="mt-6 text-sm text-gray-500">
+                  <a :href="collection.href">
+                    <span class="absolute inset-0" />
+                    {{ collection.name }}
+                  </a>
+                </h3>
+                <p class="text-base font-semibold text-gray-900">{{ collection.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sale and testimonials -->
+      <div class="relative overflow-hidden">
+        <!-- Decorative background image and gradient -->
+        <div aria-hidden="true" class="absolute inset-0">
+          <div class="absolute inset-0 mx-auto max-w-7xl overflow-hidden xl:px-8">
+            <img
+              src="https://tailwindui.com/img/ecommerce-images/home-page-02-sale-full-width.jpg"
+              alt=""
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+          <div class="absolute inset-0 bg-white bg-opacity-75" />
+          <div class="absolute inset-0 bg-gradient-to-t from-white via-white" />
+        </div>
+
+        <!-- Sale -->
+        <section
+          aria-labelledby="sale-heading"
+          class="relative mx-auto flex max-w-7xl flex-col items-center px-4 pt-32 text-center sm:px-6 lg:px-8"
+        >
+          <div class="mx-auto max-w-2xl lg:max-w-none">
+            <h2
+              id="sale-heading"
+              class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+            >
+              Get 25% off during our one-time sale
+            </h2>
+            <p class="mx-auto mt-4 max-w-xl text-xl text-gray-600">
+              Most of our products are limited releases that won't come back. Get your favorite
+              items while they're in stock.
+            </p>
+            <a
+              href="#"
+              class="mt-6 inline-block w-full rounded-md border border-transparent bg-gray-900 px-8 py-3 font-medium text-white hover:bg-gray-800 sm:w-auto"
+              >Get access to our one-time sale</a
+            >
+          </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section
+          aria-labelledby="testimonial-heading"
+          class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+        >
+          <div class="mx-auto max-w-2xl lg:max-w-none">
+            <h2 id="testimonial-heading" class="text-2xl font-bold tracking-tight text-gray-900">
+              What are people saying?
+            </h2>
+
+            <div class="mt-16 space-y-16 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
+              <blockquote
+                v-for="testimonial in testimonials"
+                :key="testimonial.id"
+                class="sm:flex lg:block"
+              >
+                <svg
+                  width="24"
+                  height="18"
+                  viewBox="0 0 24 18"
+                  aria-hidden="true"
+                  class="flex-shrink-0 text-gray-300"
+                >
+                  <path
+                    d="M0 18h8.7v-5.555c-.024-3.906 1.113-6.841 2.892-9.68L6.452 0C3.188 2.644-.026 7.86 0 12.469V18zm12.408 0h8.7v-5.555C21.083 8.539 22.22 5.604 24 2.765L18.859 0c-3.263 2.644-6.476 7.86-6.451 12.469V18z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <div class="mt-8 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-10">
+                  <p class="text-lg text-gray-600">{{ testimonial.quote }}</p>
+                  <cite class="mt-4 block font-semibold not-italic text-gray-900">{{
+                    testimonial.attribution
+                  }}</cite>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
+
+    <footer aria-labelledby="footer-heading" class="bg-white">
+      <h2 id="footer-heading" class="sr-only">Footer</h2>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="border-t border-gray-200">
+          <div class="pb-20 pt-16">
+            <div class="md:flex md:justify-center">
+              <img
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                alt=""
+                class="h-8 w-auto"
+              />
+            </div>
+            <div class="mx-auto mt-16 max-w-5xl xl:grid xl:grid-cols-2 xl:gap-8">
+              <div class="grid grid-cols-2 gap-8 xl:col-span-2">
+                <div class="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
+                  <div>
+                    <h3 class="text-sm font-medium text-gray-900">Products</h3>
+                    <ul role="list" class="mt-6 space-y-6">
+                      <li
+                        v-for="item in footerNavigation.products"
+                        :key="item.name"
+                        class="text-sm"
+                      >
+                        <a :href="item.href" class="text-gray-500 hover:text-gray-600">{{
+                          item.name
+                        }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-medium text-gray-900">Customer Service</h3>
+                    <ul role="list" class="mt-6 space-y-6">
+                      <li
+                        v-for="item in footerNavigation.customerService"
+                        :key="item.name"
+                        class="text-sm"
+                      >
+                        <a :href="item.href" class="text-gray-500 hover:text-gray-600">{{
+                          item.name
+                        }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
+                  <div>
+                    <h3 class="text-sm font-medium text-gray-900">Company</h3>
+                    <ul role="list" class="mt-6 space-y-6">
+                      <li v-for="item in footerNavigation.company" :key="item.name" class="text-sm">
+                        <a :href="item.href" class="text-gray-500 hover:text-gray-600">{{
+                          item.name
+                        }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-medium text-gray-900">Legal</h3>
+                    <ul role="list" class="mt-6 space-y-6">
+                      <li v-for="item in footerNavigation.legal" :key="item.name" class="text-sm">
+                        <a :href="item.href" class="text-gray-500 hover:text-gray-600">{{
+                          item.name
+                        }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:grid lg:grid-cols-2 lg:gap-x-6 xl:gap-x-8">
+            <div class="flex items-center rounded-lg bg-gray-100 p-6 sm:p-10">
+              <div class="mx-auto max-w-sm">
+                <h3 class="font-semibold text-gray-900">Sign up for our newsletter</h3>
+                <p class="mt-2 text-sm text-gray-500">
+                  The latest news, articles, and resources, sent to your inbox weekly.
+                </p>
+                <form class="mt-4 sm:mt-6 sm:flex">
+                  <label for="email-address" class="sr-only">Email address</label>
+                  <input
+                    id="email-address"
+                    type="text"
+                    autocomplete="email"
+                    required=""
+                    class="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  />
+                  <div class="mt-3 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
+                    <button
+                      type="submit"
+                      class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white"
+                    >
+                      Sign up
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="relative mt-6 flex items-center px-6 py-12 sm:px-10 sm:py-16 lg:mt-0">
+              <div class="absolute inset-0 overflow-hidden rounded-lg">
+                <img
+                  src="https://tailwindui.com/img/ecommerce-images/footer-02-exclusive-sale.jpg"
+                  alt=""
+                  class="h-full w-full object-cover object-center saturate-0 filter"
+                />
+                <div class="absolute inset-0 bg-indigo-600 bg-opacity-90" />
+              </div>
+              <div class="relative mx-auto max-w-sm text-center">
+                <h3 class="text-2xl font-bold tracking-tight text-white">Get early access</h3>
+                <p class="mt-2 text-gray-200">
+                  Did you sign up to the newsletter? If so, use the keyword we sent you to get
+                  access.
+                  <a href="#" class="whitespace-nowrap font-bold text-white hover:text-gray-200"
+                    >Go now<span aria-hidden="true"> &rarr;</span></a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="py-10 md:flex md:items-center md:justify-between">
+          <div class="text-center md:text-left">
+            <p class="text-sm text-gray-500">&copy; 2021 All Rights Reserved</p>
+          </div>
+
+          <div class="mt-4 flex items-center justify-center md:mt-0">
+            <div class="flex space-x-8">
+              <a
+                v-for="item in footerNavigation.bottomLinks"
+                :key="item.name"
+                :href="item.href"
+                class="text-sm text-gray-500 hover:text-gray-600"
+                >{{ item.name }}</a
+              >
+            </div>
+
+            <div class="ml-6 border-l border-gray-200 pl-6">
+              <a href="#" class="flex items-center text-gray-500 hover:text-gray-600">
+                <img
+                  src="https://tailwindui.com/img/flags/flag-canada.svg"
+                  alt=""
+                  class="h-auto w-5 flex-shrink-0"
+                />
+                <span class="ml-3 text-sm">Change</span>
+                <span class="sr-only">location and currency</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <SideDrawer v-model="MenuOpen" />
+
+  <QuickView v-model="quickOpen" :product="selectedProduct" />
 </template>
 
 <script setup>
@@ -427,10 +684,16 @@ import {
   UserIcon
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
+
 import SideDrawer from '@/components/SideDrawer.vue'
+import QuickView from '@/components/QuickView.vue'
 import { useProductsStore } from '@/stores/product'
 
 const MenuOpen = ref(false)
+const quickOpen = ref(false)
+
+const productStore = useProductsStore()
+const selectedProduct = ref(null)
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
@@ -498,5 +761,88 @@ const navigation = {
   ]
 }
 
-const productStore = useProductsStore()
+const collections = [
+  {
+    name: 'Desk and Office',
+    description: 'Work from home accessories',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg',
+    imageAlt:
+      'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+    href: '#'
+  },
+  {
+    name: 'Self-Improvement',
+    description: 'Journals and note-taking',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-02.jpg',
+    imageAlt:
+      'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+    href: '#'
+  },
+  {
+    name: 'Travel',
+    description: 'Daily commute essentials',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg',
+    imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+    href: '#'
+  }
+]
+const testimonials = [
+  {
+    id: 1,
+    quote:
+      'My order arrived super quickly. The product is even better than I hoped it would be. Very happy customer over here!',
+    attribution: 'Sarah Peters, New Orleans'
+  },
+  {
+    id: 2,
+    quote:
+      'I had to return a purchase that didn’t fit. The whole process was so simple that I ended up ordering two new items!',
+    attribution: 'Kelly McPherson, Chicago'
+  },
+  {
+    id: 3,
+    quote:
+      'Now that I’m on holiday for the summer, I’ll probably order a few more shirts. It’s just so convenient, and I know the quality will always be there.',
+    attribution: 'Chris Paul, Phoenix'
+  }
+]
+const footerNavigation = {
+  products: [
+    { name: 'Bags', href: '#' },
+    { name: 'Tees', href: '#' },
+    { name: 'Objects', href: '#' },
+    { name: 'Home Goods', href: '#' },
+    { name: 'Accessories', href: '#' }
+  ],
+  customerService: [
+    { name: 'Contact', href: '#' },
+    { name: 'Shipping', href: '#' },
+    { name: 'Returns', href: '#' },
+    { name: 'Warranty', href: '#' },
+    { name: 'Secure Payments', href: '#' },
+    { name: 'FAQ', href: '#' },
+    { name: 'Find a store', href: '#' }
+  ],
+  company: [
+    { name: 'Who we are', href: '#' },
+    { name: 'Sustainability', href: '#' },
+    { name: 'Press', href: '#' },
+    { name: 'Careers', href: '#' },
+    { name: 'Terms & Conditions', href: '#' },
+    { name: 'Privacy', href: '#' }
+  ],
+  legal: [
+    { name: 'Terms of Service', href: '#' },
+    { name: 'Return Policy', href: '#' },
+    { name: 'Privacy Policy', href: '#' },
+    { name: 'Shipping Policy', href: '#' }
+  ],
+  bottomLinks: [
+    { name: 'Accessibility', href: '#' },
+    { name: 'Privacy', href: '#' },
+    { name: 'Terms', href: '#' }
+  ]
+}
+
+const mobileMenuOpen = ref(false)
 </script>
