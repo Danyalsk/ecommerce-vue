@@ -49,7 +49,7 @@
                     <span class="sr-only">Your Company</span>
                     <img
                       class="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsskgsW2TLv_t27r-ryrOMpbG1gqPZzAdUZg&usqp=CAU"
                       alt=""
                     />
                   </a>
@@ -274,7 +274,7 @@
                       <button
                         @click="$router.push('/add-product')"
                         type="button"
-                        class="mx-4 flex w-[120px] justify-center rounded-md bg-blue-800 px-3.5 py-3 text-sm font-semibold text-white shadow-sm"
+                        class="mx-4 flex w-[120px] justify-center rounded-md bg-indigo-600 px-3.5 py-3 text-sm font-semibold text-white shadow-sm"
                       >
                         Add Product
                       </button>
@@ -310,7 +310,7 @@
                     <a
                       href="#"
                       class="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 font-medium text-white hover:bg-indigo-700"
-                      >Shop Productivity</a
+                      >Shop Now</a
                     >
                   </div>
                 </div>
