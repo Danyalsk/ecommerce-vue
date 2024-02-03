@@ -1,30 +1,9 @@
 <template>
   <div class="bg-gray-50">
     <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-      <h2 class="sr-only">Checkout</h2>
-
       <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
         <div>
-          <div>
-            <h2 class="text-lg font-medium text-gray-900">Contact information</h2>
-
-            <div class="mt-4">
-              <label for="email-address" class="block text-sm font-medium text-gray-700"
-                >Email address</label
-              >
-              <div class="mt-1">
-                <input
-                  type="email"
-                  id="email-address"
-                  name="email-address"
-                  autocomplete="email"
-                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-10 border-t border-gray-200 pt-10">
+          <div class="border-gray-200">
             <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
 
             <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
@@ -98,38 +77,7 @@
               </div>
 
               <div>
-                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    autocomplete="address-level2"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                <div class="mt-1">
-                  <select
-                    id="country"
-                    name="country"
-                    autocomplete="country-name"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label for="region" class="block text-sm font-medium text-gray-700"
-                  >State / Province</label
-                >
+                <label for="region" class="block text-sm font-medium text-gray-700">Country</label>
                 <div class="mt-1">
                   <input
                     type="text"
@@ -171,161 +119,7 @@
             </div>
           </div>
 
-          <div class="mt-10 border-t border-gray-200 pt-10">
-            <RadioGroup v-model="selectedDeliveryMethod">
-              <RadioGroupLabel class="text-lg font-medium text-gray-900"
-                >Delivery method</RadioGroupLabel
-              >
-
-              <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                <RadioGroupOption
-                  as="template"
-                  v-for="deliveryMethod in deliveryMethods"
-                  :key="deliveryMethod.id"
-                  :value="deliveryMethod"
-                  v-slot="{ checked, active }"
-                >
-                  <div
-                    :class="[
-                      checked ? 'border-transparent' : 'border-gray-300',
-                      active ? 'ring-2 ring-indigo-500' : '',
-                      'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
-                    ]"
-                  >
-                    <span class="flex flex-1">
-                      <span class="flex flex-col">
-                        <RadioGroupLabel
-                          as="span"
-                          class="block text-sm font-medium text-gray-900"
-                          >{{ deliveryMethod.title }}</RadioGroupLabel
-                        >
-                        <RadioGroupDescription
-                          as="span"
-                          class="mt-1 flex items-center text-sm text-gray-500"
-                          >{{ deliveryMethod.turnaround }}</RadioGroupDescription
-                        >
-                        <RadioGroupDescription
-                          as="span"
-                          class="mt-6 text-sm font-medium text-gray-900"
-                          >{{ deliveryMethod.price }}</RadioGroupDescription
-                        >
-                      </span>
-                    </span>
-                    <CheckCircleIcon
-                      v-if="checked"
-                      class="h-5 w-5 text-indigo-600"
-                      aria-hidden="true"
-                    />
-                    <span
-                      :class="[
-                        active ? 'border' : 'border-2',
-                        checked ? 'border-indigo-500' : 'border-transparent',
-                        'pointer-events-none absolute -inset-px rounded-lg'
-                      ]"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </RadioGroupOption>
-              </div>
-            </RadioGroup>
-          </div>
-
           <!-- Payment -->
-          <div class="mt-10 border-t border-gray-200 pt-10">
-            <h2 class="text-lg font-medium text-gray-900">Payment</h2>
-
-            <fieldset class="mt-4">
-              <legend class="sr-only">Payment type</legend>
-              <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-                <div
-                  v-for="(paymentMethod, paymentMethodIdx) in paymentMethods"
-                  :key="paymentMethod.id"
-                  class="flex items-center"
-                >
-                  <input
-                    v-if="paymentMethodIdx === 0"
-                    :id="paymentMethod.id"
-                    name="payment-type"
-                    type="radio"
-                    checked=""
-                    class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                  />
-                  <input
-                    v-else
-                    :id="paymentMethod.id"
-                    name="payment-type"
-                    type="radio"
-                    class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                  />
-                  <label
-                    :for="paymentMethod.id"
-                    class="ml-3 block text-sm font-medium text-gray-700"
-                    >{{ paymentMethod.title }}</label
-                  >
-                </div>
-              </div>
-            </fieldset>
-
-            <div class="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
-              <div class="col-span-4">
-                <label for="card-number" class="block text-sm font-medium text-gray-700"
-                  >Card number</label
-                >
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    id="card-number"
-                    name="card-number"
-                    autocomplete="cc-number"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div class="col-span-4">
-                <label for="name-on-card" class="block text-sm font-medium text-gray-700"
-                  >Name on card</label
-                >
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    id="name-on-card"
-                    name="name-on-card"
-                    autocomplete="cc-name"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div class="col-span-3">
-                <label for="expiration-date" class="block text-sm font-medium text-gray-700"
-                  >Expiration date (MM/YY)</label
-                >
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    name="expiration-date"
-                    id="expiration-date"
-                    autocomplete="cc-exp"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label for="cvc" class="block text-sm font-medium text-gray-700">CVC</label>
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    name="cvc"
-                    id="cvc"
-                    autocomplete="csc"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- Order summary -->
@@ -403,17 +197,10 @@
                 <dt class="text-sm">Subtotal</dt>
                 <dd class="text-sm font-medium text-gray-900">{{ productStore.cartTotal }}</dd>
               </div>
-              <div class="flex items-center justify-between">
-                <dt class="text-sm">Shipping</dt>
-                <dd class="text-sm font-medium text-gray-900">$5.00</dd>
-              </div>
-              <div class="flex items-center justify-between">
-                <dt class="text-sm">Taxes</dt>
-                <dd class="text-sm font-medium text-gray-900">$5.52</dd>
-              </div>
+
               <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                 <dt class="text-base font-medium">Total</dt>
-                <dd class="text-base font-medium text-gray-900">$75.52</dd>
+                <dd class="text-base font-medium text-gray-900">{{ productStore.cartTotal }}</dd>
               </div>
             </dl>
 
@@ -481,7 +268,10 @@ const paymentMethods = [
 const router = useRouter()
 
 const placeOrder = () => {
-  productStore.orders.push({ products: { ...productStore.cart }, id: Math.random() })
+  productStore.orders.push({
+    products: { ...productStore.cart },
+    id: Math.floor(Math.random() * 10000)
+  })
   productStore.cart = []
   router.push({ name: 'yourOrder' })
 }

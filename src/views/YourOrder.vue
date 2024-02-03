@@ -11,17 +11,13 @@
       </div>
 
       <div class="mt-12 space-y-16 sm:mt-16">
-        <section
-          v-for="order in productStore.orders"
-          :key="order.number"
-          :aria-labelledby="`${number}-heading`"
-        >
+        <section v-for="order in productStore.orders" :key="order.id" :aria-labelledby="`heading`">
           <div class="space-y-1 md:flex md:items-baseline md:space-x-4 md:space-y-0">
             <h2
               :id="`${order.number}-heading`"
               class="text-lg font-medium text-gray-900 md:flex-shrink-0"
             >
-              Order #{{ number }}
+              Order #{{ order.id }}
             </h2>
             <div
               class="space-y-5 sm:flex sm:items-baseline sm:justify-between sm:space-y-0 md:min-w-0 md:flex-1"
@@ -68,10 +64,11 @@
                   Buy again
                 </button>
                 <button
+                  @click="$router.push((name = 'home'))"
                   type="button"
                   class="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-2.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-full sm:flex-grow-0"
                 >
-                  Shop similar
+                  Home
                 </button>
               </div>
             </div>
@@ -109,6 +106,5 @@ import { useProductsStore } from '@/stores/product'
 //   // More orders...
 // ]
 const size = '3" x 3" x 3"'
-const number = '4376'
 const productStore = useProductsStore()
 </script>
