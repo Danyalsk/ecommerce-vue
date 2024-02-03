@@ -221,14 +221,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import {
-  RadioGroup,
-  RadioGroupDescription,
-  RadioGroupLabel,
-  RadioGroupOption
-} from '@headlessui/vue'
-import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/20/solid'
 import { useProductsStore } from '@/stores/product'
 import { useRouter } from 'vue-router'
 
@@ -255,16 +247,6 @@ const size = 'Large'
 
 const productStore = useProductsStore()
 
-const deliveryMethods = [
-  { id: 1, title: 'Standard', turnaround: '4–10 business days', price: '$5.00' },
-  { id: 2, title: 'Express', turnaround: '2–5 business days', price: '$16.00' }
-]
-const paymentMethods = [
-  { id: 'credit-card', title: 'Credit card' },
-  { id: 'paypal', title: 'PayPal' },
-  { id: 'etransfer', title: 'eTransfer' }
-]
-
 const router = useRouter()
 
 const placeOrder = () => {
@@ -275,6 +257,4 @@ const placeOrder = () => {
   productStore.cart = []
   router.push({ name: 'yourOrder' })
 }
-
-const selectedDeliveryMethod = ref(deliveryMethods[0])
 </script>

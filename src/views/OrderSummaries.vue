@@ -39,7 +39,7 @@
             role="list"
             class="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500"
           >
-            <li v-for="product in products" :key="product.id" class="flex space-x-6 py-6">
+            <li v-for="product in orders.products" :key="product.id" class="flex space-x-6 py-6">
               <img
                 :src="product.imageSrc"
                 :alt="product.imageAlt"
@@ -52,6 +52,7 @@
                 <p>{{ product.color }}</p>
                 <p>{{ product.size }}</p>
               </div>
+              s
               <p class="flex-none font-medium text-gray-900">{{ product.price }}</p>
             </li>
           </ul>
@@ -131,17 +132,21 @@
 </template>
 
 <script setup>
-const products = [
-  {
-    id: 1,
-    name: 'Basic Tee',
-    href: '#',
-    price: '$36.00',
-    color: 'Charcoal',
-    size: 'L',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/confirmation-page-06-product-01.jpg',
-    imageAlt: "Model wearing men's charcoal basic tee in large."
-  }
-  // More products...
-]
+import { useProductsStore } from '@/stores/product'
+
+// const products = [
+//   {
+//     id: 1,
+//     name: 'Basic Tee',
+//     href: '#',
+//     price: '$36.00',
+//     color: 'Charcoal',
+//     size: 'L',
+//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/confirmation-page-06-product-01.jpg',
+//     imageAlt: "Model wearing men's charcoal basic tee in large."
+//   }
+//   // More products...
+// ]
+
+const productStore = useProductsStore()
 </script>
