@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import CheckOut from '@/views/CheckOut.vue'
 import OrderSummaries from '@/views/OrderSummaries.vue'
 import YourOrder from '@/views/YourOrder.vue'
@@ -11,34 +10,34 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('@/views/HomeView.vue')
     },
     {
       path: '/add-product',
       name: 'addProduct',
-      component: AddProduct
+      component: () => import('@/views/AddProduct.vue')
     },
 
     {
       path: '/checkOut',
       name: 'checkout',
-      component: CheckOut
+      component: () => import('@/views/CheckOut.vue')
     },
     {
       path: '/order-summaries',
       name: 'orderSummaries',
-      component: OrderSummaries
+      component: () => import('@/views/OrderSummaries.vue')
     },
     {
       path: '/your-order',
       name: 'yourOrder',
-      component: YourOrder
+      component: () => import('@/views/YourOrder.vue')
     },
 
     {
       path: '/overview/:id',
       name: 'productOverview',
-      component: ProductOverView
+      component: () => import('@/views/ProductOverView.vue')
     },
     {
       path: '/list',
