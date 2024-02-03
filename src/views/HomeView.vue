@@ -258,7 +258,7 @@
                     <span class="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true" />
 
                     <div class="flow-root">
-                      <a @click="MenuOpen = true" class="group -m-2 flex items-center p-2">
+                      <a class="group -m-2 flex items-center p-2" @click="openCart">
                         <ShoppingCartIcon
                           class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                           aria-hidden="true"
@@ -694,6 +694,12 @@ const quickOpen = ref(false)
 
 const productStore = useProductsStore()
 const selectedProduct = ref(null)
+
+const openCart = () => {
+  if (productStore.cart.length > 0) {
+    MenuOpen.value = true
+  }
+}
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {

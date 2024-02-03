@@ -107,6 +107,7 @@
                     </p>
                     <div class="mt-6">
                       <a
+                        v-if="productStore.cart.length > 0"
                         @click="$router.push((name = 'checkout'))"
                         class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >Checkout</a
