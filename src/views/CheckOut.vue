@@ -38,18 +38,6 @@
               </div>
 
               <div class="sm:col-span-2">
-                <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    name="company"
-                    id="company"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div class="sm:col-span-2">
                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
                 <div class="mt-1">
                   <input
@@ -57,20 +45,6 @@
                     name="address"
                     id="address"
                     autocomplete="street-address"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-
-              <div class="sm:col-span-2">
-                <label for="apartment" class="block text-sm font-medium text-gray-700"
-                  >Apartment, suite, etc.</label
-                >
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    name="apartment"
-                    id="apartment"
                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
