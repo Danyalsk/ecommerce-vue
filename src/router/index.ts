@@ -3,7 +3,6 @@ import HomeView from '../views/HomeView.vue'
 import CheckOut from '@/views/CheckOut.vue'
 import OrderSummaries from '@/views/OrderSummaries.vue'
 import YourOrder from '@/views/YourOrder.vue'
-import LoginView from '@/views/LoginView.vue'
 import AddProduct from '@/views/AddProduct.vue'
 import ProductOverView from '@/views/ProductOverView.vue'
 const router = createRouter({
@@ -11,16 +10,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Login',
-      component: LoginView
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: LoginView
-    },
-    {
-      path: '/home',
       name: 'home',
       component: HomeView
     },
