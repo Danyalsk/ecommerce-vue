@@ -1,17 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CheckOut from '@/views/CheckOut.vue'
-import OrderSummaries from '@/views/OrderSummaries.vue'
-import YourOrder from '@/views/YourOrder.vue'
-import AddProduct from '@/views/AddProduct.vue'
-import ProductOverView from '@/views/ProductOverView.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      redirect: '/home'
-    }
-,    {
       path: '/',
       name: 'home',
       component: () => import('@/views/HomeView.vue')
